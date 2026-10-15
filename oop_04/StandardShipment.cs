@@ -7,6 +7,11 @@ namespace oop_05
     public class StandardShipment : Shipment
     {
         public StandardShipment() : base() { }
+        public StandardShipment(string code,string city) : base()
+        {
+            trackingcode = code;
+            Destination.City = city;
+        }
         public override decimal EstimatedCost
         {
             get => base.deliveryfee + (base.weight * 5);
@@ -14,10 +19,6 @@ namespace oop_05
         public override decimal? CalculateInsurance()
         {
             return EstimatedCost * .05M;
-        }
-        public override string? GetTrackingStatus()
-        {
-            return "Ready";
         }
         public override void PrintShipment()
         {

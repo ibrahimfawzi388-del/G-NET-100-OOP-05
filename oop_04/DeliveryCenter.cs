@@ -56,7 +56,7 @@ namespace oop_05
                     position[i] = true;
 
                     Console.WriteLine("shipment added Successfully");
-
+                    Shipment.TotalShipmentsCreated++;
                     return true;
                 }
             }
@@ -107,5 +107,7 @@ namespace oop_05
                 }
             }
         }
+
+
     }
 }

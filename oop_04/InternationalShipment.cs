@@ -33,14 +33,17 @@ namespace oop_05
         {
             return EstimatedCost * .12M;
         }
-        public override string? GetTrackingStatus()
-        {
-            return "Ready";
-        }
         public InternationalShipment() : base()
         {
             destinationcountry = default;
             customsfee = default;
+        }
+        public InternationalShipment(string code ,string city) : base()
+        {
+            destinationcountry = default;
+            customsfee = default;
+            trackingcode = code;
+            Destination.City = city;
         }
         public override void PrintShipment()
         {
