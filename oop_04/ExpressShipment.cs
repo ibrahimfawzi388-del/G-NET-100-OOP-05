@@ -28,14 +28,17 @@ namespace oop_05
             extraFee = default;
         }
 
+        public ExpressShipment(string code,string city) : base()
+        {
+            extraFee = default;
+            trackingcode = code;
+            Destination.City = city;
+        }
         public override decimal? CalculateInsurance()
         {
             return EstimatedCost * .08M;
         }
-        public override string? GetTrackingStatus()
-        {
-            return "Out for Delivery";
-        }
+        
 
         public override void PrintShipment()
         {

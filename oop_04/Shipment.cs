@@ -4,22 +4,16 @@ using System.Text;
 
 namespace oop_05
 {
-    public abstract class Shipment : IInsurable, ITrackable
+    public abstract partial class Shipment : IInsurable, ITrackable
     {
         string TrackingCode;
         string Description;
         decimal Weight;
         decimal DeliveryFee;
-        public DeliveryAddress Destination { get; set; }
+        public static int TotalShipmentsCreated ;
+        public DeliveryAddress Destination;
 
-        public virtual decimal? CalculateInsurance()
-        {
-            return default;
-        }
-        public virtual string? GetTrackingStatus()
-        {
-            return default;
-        }
+        
         public string trackingcode
         {
             get => TrackingCode;
@@ -87,27 +81,35 @@ namespace oop_05
             this.Destination = destination;
         }
 
-        public void UpdateDeliveryFee(decimal newFee)
+        
+
+
+        
+
+        public Shipment ShallowCopy()
         {
-            deliveryfee = newFee;
+            return (Shipment)MemberwiseClone();
         }
 
-        public virtual void PrintShipment()
+        public Shipment DeepCopy()
         {
-
+            Shipment shipment = (Shipment)MemberwiseClone();
+            shipment.Destination =new DeliveryAddress(this.Destination.Street,this.Destination.City,this.Destination.BuildingNumber);
+            return shipment;
         }
 
-        public void updateWeight(decimal newWeight)
+        static Shipment()
         {
-            weight = newWeight;
+            TotalShipmentsCreated = 0;
+            Console.WriteLine("Shipment System Initialized");
         }
 
+        public partial void OnTrackingStatusChanged(string newStatus);
 
-        public void updateWeight(decimal newWeight, decimal extraPackingWeight)
+        public void UpdateTrackingStatus(string newStatus)
         {
-            weight = newWeight + extraPackingWeight;
+            statue = newStatus;
+            OnTrackingStatusChanged(newStatus);
         }
-
-
     }
 }
